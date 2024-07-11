@@ -13,8 +13,9 @@ rm( list = ls() )
 
 # Load the libraries
 library( dplyr ) # for working with the data
+library( here )  # to call local directory
 
-
+ 
 # ================================================================== #
 # load the data
 dat <- readRDS( file = here( "PR-interviewer-comparison-rodeo/trust.rhps.cntrls.vars.data.rds" ) )
@@ -112,6 +113,9 @@ balance.dat <- dat %>%
 # keep 158 cases, table(balance.dat$Randomize == 1)
 randomized.dat <- balance.dat[balance.dat$Randomize == 1,]
 
+# table based on who was interviewed
+table( randomized.dat$Interviewer )
+
 # Create the variables to perform the tests on
 randomized.vars.to.use <- randomized.dat %>% 
   select( -c( id, Interviewer, Randomize ) )
@@ -127,6 +131,98 @@ randomized.t.results <- t.test.data(
   randomized.dat, randomized.vars.to.use, randomized.dat$Interviewer 
   )
 plot.ttests( randomized.t.results, "Figure #: Balance among \nRandomized Interviewees (n = 158)" )
+
+
+# ================================================================== #
+# Compare all covariates for those who are in the randomized condition.
+
+# Get the data you want to compare
+cov.dat <- dat %>% 
+  select(
+    id, Interviewer, Randomize, 
+    trust1:trust15,
+    rh1:rh14,
+    ps1:ps7
+  )
+
+# keep 158 cases
+random.cov.dat <- cov.dat[cov.dat$Randomize == 1,]
+
+# Create the variables to perform the tests on
+cov.vars.to.use <- random.cov.dat %>% 
+  select( -c( id, Interviewer, Randomize ) )
+
+# Create vector of names for the plot
+custom_labels <- c(
+  paste("T ",rep( 1:15 ), sep = "" ),
+  paste("CRH ",rep( 1:14 ), sep = "" ),
+  paste("PS ",rep( 1:7 ), sep = "" )
+)
+
+# labels for the legend
+legend_labels <- c( 
+  "T = Trust Item", 
+  "CRH = Community Relational Health Item", 
+  "PS =  Psychological Safety Item" 
+)
+
+# Create the object of t-test results
+cov.t.results <- t.test.data(
+  random.cov.dat, cov.vars.to.use, random.cov.dat$Interviewer 
+)
+
+# plot the tests
+plot.ttests( cov.t.results, "Figure #: Difference of Means among \nRandomized Interviewees (n = 158)"  )
+
+# add a legend
+legend( "topleft" , 
+        legend = legend_labels, 
+        title = "Legend", cex = 0.45
+)
+
+
+
+!!!HERE WITH WORKING THROUGH AND CLEANING THIS UP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ================================================================== #
+# Check balance in covariates comparing randomized to non-randomized
+
+###!!!!THIS WILL BE AN APPENDIX WHERE YOU INCLUDE ALL THE VARIABLES
+### AND DO TTESTS ON THEM AND PRESENT IT
+
+
+
+# Create the variables to perform the tests on.
+select.vars.to.use <- balance.dat %>% 
+  select( -c( id, Interviewer, Randomize ) )
+
+# Create vector of names for the plot
+custom_labels <- c(
+  "Age\n (Logged)", "White", "Black", "Hispanic", "Years of\n Education", "Single", "Has\n Children",
+  "First Time\n in Prison", "Time In\n Prison", "Sentence\n Length", "Lifer"
+)
+
+# Create the object of t-test results
+select.t.results <- t.test.data(
+  balance.dat, select.vars.to.use, balance.dat$Randomize 
+)
+plot.ttests( select.t.results, "Figure #: Demographic Comparison between Randomized and Non-Randomizedamong \nRandomized Interviewees (n = 158)" )
 
 
 # ================================================================== #
@@ -166,52 +262,7 @@ select.t.results <- t.test.data(
 # # t.test( cruz.vars.to.use$timein_yrs ~ cruz.dat$Randomize, data = cruz.dat )
 
 
-# ================================================================== #
-# Compare all covariates for those who are in the randomized condition.
 
-# Get the data you want to compare
-cov.dat <- dat %>% 
-  select(
-    id, Interviewer, Randomize, 
-    trust1:trust15,
-    rh1:rh14,
-    ps1:ps7
-  )
-
-# keep 158 cases
-random.cov.dat <- cov.dat[cov.dat$Randomize == 1,]
-
-# Create the variables to perform the tests on
-cov.vars.to.use <- random.cov.dat %>% 
-  select( -c( id, Interviewer, Randomize ) )
-
-# Create vector of names for the plot
-custom_labels <- c(
-  paste("T ",rep( 1:15 ), sep = "" ),
-  paste("RH ",rep( 1:14 ), sep = "" ),
-  paste("PS ",rep( 1:7 ), sep = "" )
-)
-
-# labels for the legend
-legend_labels <- c( 
-  "T = Trust Item", 
-  "RH = Relational Health Item", 
-  "PS =  Psychological Safety Item" 
-)
-
-# Create the object of t-test results
-cov.t.results <- t.test.data(
-  random.cov.dat, cov.vars.to.use, random.cov.dat$Interviewer 
-)
-
-# plot the tests
-plot.ttests( cov.t.results, "Difference of Means among \nRandomized Interviewees (n = 158)"  )
-
-# add a legend
-legend( "topleft" , 
-        legend = legend_labels, 
-        title = "Legend", cex = 0.5
-        )
 
 
 
