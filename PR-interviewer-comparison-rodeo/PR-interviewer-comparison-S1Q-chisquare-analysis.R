@@ -207,10 +207,10 @@ y.ax <- seq( 1: dim( datThemes )[1] )
 cols <- c( "#eb5636","#a709f7" )
 
 pchs <- c(
-  rep( 0, dim( datThemes )[1] - 6 ),
-  rep( 15, 6 ),
-  rep( 1, dim( datThemes )[1] - 6 ),
-  rep( 16, 6 )
+  rep( 0, dim( datThemes )[1] - 1 ),
+  rep( 15, 1 ),
+  rep( 1, dim( datThemes )[1] - 1 ),
+  rep( 16, 1 )
   )
 
 # labels for the legend
@@ -225,7 +225,7 @@ plot(
   seq( 0, 1, length.out = dim( datThemes )[1] ),
   y.ax,
   type = "n",
-  xlab = "Proportions responding 'yes' to each theme",
+  xlab = "Proportions with thematic element",
   ylab = "",
   yaxt = "n"
 )
@@ -265,10 +265,11 @@ plot(
   seq( 0, 1, length.out = dim( datReject )[1] ),
   seq( 1: dim( datReject )[1] ),
   type = "n",
-  xlab = "Proportions responding 'yes' to each theme",
+  xlab = "Proportions with thematic element",
   ylab = "",
   yaxt = "n"
 )
+
 
 # set up points for the plot
 points( datReject$ASU.Yes.p[order(datReject$diff)], seq( 1: dim( datReject )[1] ), col = cols[1], pch = pchs[1] )

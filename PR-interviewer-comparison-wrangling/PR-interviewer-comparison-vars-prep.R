@@ -123,3 +123,4 @@ colnames( comparison.dat ) <- names.comparison.dat
 # save the file for calling in the analysis ----
 
 saveRDS( comparison.dat, paste( here(), "/PR-interviewer-comparison-rodeo/trust.rhps.cntrls.vars.data", ".rds", sep = "" ) )  
+
