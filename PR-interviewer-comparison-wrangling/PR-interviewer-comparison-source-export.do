@@ -10,7 +10,7 @@
 * Get the items for analzying differences.
 
 * Call the file.
-use "/Users/jyoung20/ASU Dropbox/Jacob Young/GitHub_repos/PR-interviewer-comparison/PR-interviewer-comparison-wrangling/PV PAR Interviews Full_CLEANED.dta", clear
+use "/Users/jyoung20/ASU Dropbox/Jacob Young/Perryville PAR/PV PAR Interviews Full_CLEANED.dta", clear
 
 
 * Select the variables.
@@ -28,11 +28,4 @@ label drop _all
 
 
 * Write an outfile.
-cd "/Users/jyoung20/ASU Dropbox/Jacob Young/GitHub_repos/PR-interviewer-comparison/PR-interviewer-comparison-wrangling/"
 outsheet using PR-interviewer-comparison-vars.csv , comma replace
-
-
-* ============================================================== *
-* Get the text variables.
-
-* NEED TO ADD THESE VARIABLES WHEN YOU FIGURE OUT THE CODE FOR THEM
