@@ -1,0 +1,139 @@
+---
+title: "PAR Interviewer Comparison Results"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: pdf_document
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set( echo = TRUE, 
+                      message = FALSE, 
+                      warning = FALSE, 
+                      fig.width = 10, 
+                      fig.height = 8 )
+
+```
+
+
+```{r, echo = FALSE, eval = TRUE, results = FALSE, fig.show = "hide"}
+
+source( "/Users/jyoung20/Dropbox (ASU)/Perryville PAR/Projects/PAR_Interviewer_Comparison/PV_PAR_Interviewer_Comparison_ANALYSIS_syntax.R" )
+
+```
+
+<br>
+
+Here are the preliminary results for the comparison of PAR interviewers. The basic idea of the project was to randomly assign individuals to be interviewed by an ASU interviewer or an incarcerated interviewer at Santa Cruz.  
+
+<br>
+
+## Comparing Balance on Demographics  
+
+For the analyses below, difference of means tests were performed using *t*-tests. The plots show the point estimates for the difference in the means between the groups along with the 95% confidence intervals. A horizontal dashed line is shown at zero for reference. For a difference of means test, if the confidence interval **includes** zero, then the null hypothesis is not rejected and there is no statistical evidence for a difference between the groups for that particular variable.
+
+<br>
+
+\newpage
+
+### 158 individuals randomized according to the design  
+
+158 of the 200 women were randomized according to the design. 42 were not randomized according to the design.
+
+The figure below shows the balance on demographic characteristics for the 158 women according to whether they had an ASU interviewer or a Santa Cruz interviewer. The results indicate that there is no demographic predictor (among those listed) of whether someone received an ASU interviewer or a Santa Cruz interviewer.
+
+<br>
+
+```{r, echo = FALSE, eval = TRUE, results = TRUE}
+
+plot.ttests( randomized.t.results, "Balance among \nRandomized Interviewees (n = 158)" )
+
+```
+
+<br>
+
+\newpage
+
+### Comparisons based on interviewer
+
+The two plots below compares the same demographic variables, but splits the data based on the interviewer type.   
+
+In the first plot on the left, 101 respondents were interviewed by an ASU interviewer. The comparison is between those who were randomized to receive an ASU interviewer and those who were not randomized (i.e. they selected an ASU interviewer). There are no differences between these groups.
+
+In the second plot on the right, 97 respondents were interviewed by an incarcerated women at Santa Cruz. The comparison is between those who were randomized to be interviewed by a Santa Cruz interviewer and those who were not randomized (i.e. they selected a Santa Cruz interviewer). **Length of current incarceration** (*timein_yrs* variable) shows a higher average mean for those who were not in the randomized condition (i.e. women who did not comply with the randomization had spent about 3 more years in prison). But, the adjusted p-value suggest that this difference is not significantly different than zero.
+
+<br>
+
+```{r, echo = FALSE, eval = TRUE, results = TRUE}
+
+op <- par( mfrow = c( 1,2 ) )
+plot.ttests( asu.t.results, "Comparing Randomized to Non-Randomized\n for ASU Interviewed (n = 101)" )
+plot.ttests( cruz.t.results, "Comparing Randomized to Non-Randomized\n for Cruz Interviewed (n = 97)" )
+par( op )
+
+```
+
+<br>
+
+\newpage
+
+## Comparing covariates
+
+### Cases meeting randomization condition.
+
+The plot below shows the results of the difference of means tests for 36 variables from *Section 3* of the survey instrument (i.e. the trust items). The plot shows that there are *no* significant differences in the means for these variables between interview groups. That is to say, on average, there are no mean differences between those who received an ASU interviewer vs. a Santa Cruz interviewer. 
+
+<br>
+
+```{r, echo = FALSE, eval = TRUE, results = TRUE}
+
+plot.ttests( cov.t.results, "Comparing Means among \nRandomized Interviewees (n = 158)"  )
+
+```
+
+<br>
+
+\newpage
+
+### Cases not meeting randomization condition.
+
+The plot below shows the same plot above, but for the 42 individuals who did not comply with the randomization. There are 2 means that are significantly different from zero. But, after adjusting the pvalue for the number of tests, these differences do not meet the criteria for a significant difference. 
+
+<br>
+
+```{r, echo = FALSE, eval = TRUE, results = TRUE}
+
+plot.ttests( norcov.t.results, "Comparing Means among \nNon-Randomized Interviewees (n = 42)"  )
+
+```
+
+\newpage
+
+### All cases
+
+The plot below shows the difference of means tests for the trust items for all 200 individuals. The plot shows that there are *no* significant differences in the means for these variables between interview groups.  
+
+<br>
+
+```{r, echo = FALSE, eval = TRUE, results = TRUE}
+
+plot.ttests( cov.t.results, "Comparing Means among \nNAll Interviewees (n = 200)" )
+
+```
+
+<br>
+
+\newpage
+
+## Next steps  
+
+<br>
+
+The next steps are to examine the responses to the question "Would you have been more comfortable completing this interview with [someone incarcerated at Cruz OR an ASU researcher]?". Preliminary analysis indicates that women did express concerns and that these concerns differed based on who the interviewer was.
+
+<br>

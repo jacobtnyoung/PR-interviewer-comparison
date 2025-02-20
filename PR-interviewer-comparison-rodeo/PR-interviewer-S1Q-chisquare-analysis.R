@@ -2,58 +2,31 @@
 # PAPER TITLE
 # ================================================================== #
 
-# DOCUMENT!!!
+# This file conducts the chi-square tests.
 
+# It creates several figures used in the manuscript.
+# "Figure 3: Proportions for Themes and Differences"
 
 # ================================================================== #
-# Setup ----
 
-# Clear the workspace
+# ----
+# Setup
+
+# clear the workspace
 rm( list = ls() )
 
-
-# Load the libraries
-library( dplyr )     # for working with the data
-
-
-# ================================================================== #
-# write the function to execute the test
-
-test.table <- function(
-  # arguments
-  n_ASU = 80, n_INI = 78, # total count for each group
-  n_ASU_y_THEME_y = 58,   # yes response to theme for ASU
-  n_INI_y_THEME_y = 40,   # yes response to theme for incarcerated interviewers
-  n_ASU_y_THEME_n = n_ASU - n_ASU_y_THEME_y, # no response to theme for ASU
-  n_INI_y_THEME_n = n_INI - n_INI_y_THEME_y  # no response to them for incarcerated interviewers
-  ){
-  
-  # create the table  
-  dat_table <- matrix(
-    c( 
-      n_ASU_y_THEME_y,
-      n_ASU_y_THEME_n,
-      n_INI_y_THEME_y,
-      n_INI_y_THEME_n ),
-    nrow = 2,
-    byrow = FALSE
-    )
-  
-  # run the test
-  table_test <- chisq.test( dat_table )
-  
-  # grab what you want to return
-  return(
-    cbind( table_test$statistic,
-           table_test$p.value 
-           )
-  )
-}
+# load the libraries
+library( dplyr ) # for working with the data
+library( here )  # to call local directory
 
 
-# ================================================================== #
+# ----
+# load the functions needed that is in the utilities folder
+source( here( "PR-interviewer-comparison-utils/PR-interviewer-functions.R" ) )
+
+
+# ----
 # build the dataset of responses
-
 
 # record the responses for each theme
 s1q1Themes <- rbind( 
@@ -171,7 +144,7 @@ results$reject <- ifelse( results$pvalue < 0.05, "Yes", "No" )
 results$Bonf.reject <- ifelse( results$pvalue < round( 0.05 / dim( datThemes )[1], 3 ), "Yes", "No" )
 
 
-# ================================================================== #
+# ----
 # Create the proportions to use for the plot
 
 datThemes <- as.data.frame( datThemes )
@@ -198,9 +171,8 @@ datThemes$custom_labels <- c(
 datThemes$reject <- results$reject
 
 
-# ================================================================== #
-# Create the function to plot the results
-
+# ----
+# Create the objects for the plot
 
 # define parts of the plot
 y.ax <- seq( 1: dim( datThemes )[1] )
@@ -215,8 +187,8 @@ pchs <- c(
 
 # labels for the legend
 legend_labels <- c( 
-  "ASU Interviewer", 
-  "Incarcerted Interviewer"
+  "Outside Interviewer", 
+  "Inside Interviewer"
 )
 
 
@@ -235,7 +207,7 @@ points( datThemes$ASU.Yes.p[order(datThemes$diff)], y.ax, col = cols[1], pch = p
 points( datThemes$INI.Yes.p[order(datThemes$diff)], y.ax, col = cols[2], pch = pchs[54:106] )
 
 axis( side = 2, at = y.ax, las = 1, labels = datThemes$custom_labels[order(datThemes$diff)], cex.axis = 0.8 )
-title( "Figure #: Proportions for Themes and Differences" )
+# title( "Figure 3: Proportions for Themes and Differences" )
 
 # add a legend
 legend( "bottomright" ,
@@ -244,44 +216,4 @@ legend( "bottomright" ,
         legend = legend_labels, 
         title = "Legend", cex = 0.7
 )
-
-
-
-# take those for which you reject the null
-datReject <- datThemes %>% 
-  filter( reject == "Yes")
-
-themes <- c(
-  "Q3t7: Ordinary Day: Calm Environment",
-  "Q4t1: Personal Growth",
-  "Q1t1: Personal Growth & Resilience",
-  "Q6t1: Self-Betterment & Productivity",
-  "Q6t2: Leisure & Creativity",
-  "Q3t1: Great Day: Positive Environment & Tolerable Conditions"
-)
-
-# execute plot
-plot(
-  seq( 0, 1, length.out = dim( datReject )[1] ),
-  seq( 1: dim( datReject )[1] ),
-  type = "n",
-  xlab = "Proportions with thematic element",
-  ylab = "",
-  yaxt = "n"
-)
-
-
-# set up points for the plot
-points( datReject$ASU.Yes.p[order(datReject$diff)], seq( 1: dim( datReject )[1] ), col = cols[1], pch = pchs[1] )
-points( datReject$INI.Yes.p[order(datReject$diff)], seq( 1: dim( datReject )[1] ), col = cols[2], pch = pchs[2] )
-
-axis( side = 2, at = seq( 1: dim( datReject )[1] ), las = 1, labels = datReject$custom_labels[order(datReject$diff)], cex.axis = 0.8 )
-title( "Figure #: Proportions for Themes and Differences" )
-
-text( 0.2, 6, themes[1], cex = 0.6 )
-text( 0.2, 5, themes[2], cex = 0.6 )
-text( 0.2, 4, themes[3], cex = 0.6 )
-text( 0.2, 3, themes[4], cex = 0.6 )
-text( 0.2, 2, themes[5], cex = 0.6 )
-text( 0.5, 1, themes[6], cex = 0.6 )
 

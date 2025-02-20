@@ -1,12 +1,9 @@
 # ################################################################## #
-# PAPER TITLE
+# PAPER TITLE NEEDED!!!!
 # ################################################################## #
 
 # This file prepares trust, relational health, psychological safety,
 # and demographic variables for analysis
-
-# This file is called in the NAME script.
-
 
 # ================================================================== #
 # Setup ----
@@ -72,10 +69,13 @@ NA.replace <- function( input.dat, pdist ){
 
 ### trust items
 
-# Show there are 67 missing values over the 15 items
+# show there are 67 missing values over the 15 items
 table( is.na( trust.vars ) )
 
-# Run the function to replace the missing values
+# for the randomized group there are 51
+table( is.na( trust.vars[ dat$Randomize == 1 ] ) )
+
+# run the function to replace the missing values
 trust.vars.na   <- NA.replace( trust.vars, rbinom( n = 1, size = 1, prob = 0.5 ) )
 
 
@@ -83,6 +83,9 @@ trust.vars.na   <- NA.replace( trust.vars, rbinom( n = 1, size = 1, prob = 0.5 )
 
 # replace 15 missing values
 table( is.na( rh.vars ) )
+
+# for the randomized group there are 51
+table( is.na( rh.vars[ dat$Randomize == 1 ] ) )
 
 # execute the function
 rh.vars.na   <- NA.replace( rh.vars, round( runif( n = 1, min = 1, max = 5 ), 0 ) )
@@ -92,6 +95,9 @@ rh.vars.na   <- NA.replace( rh.vars, round( runif( n = 1, min = 1, max = 5 ), 0 
 
 # replace 29 missing values
 table( is.na( ps.vars ) )
+
+# for the randomized group there are 51
+table( is.na( ps.vars[ dat$Randomize == 1 ] ) )
 
 # execute the function
 ps.vars.na   <- NA.replace( ps.vars, round( runif( n = 1, min = 1, max = 5 ), 0 ) )
