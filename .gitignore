@@ -6,19 +6,21 @@ PR-interviewer-comparison-wrangling/trust-culture-source-export.do
 
 # data files
 .Rproj.user
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/PR-interviewer-comparison-vars.csv
-PR-interviewer-comparison-rodeo/PR-interviewer-rodeo-data/trust.rhps.cntrls.vars.data.rds
 
-# files for coding responses
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-JACOB.csv
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-JACOB.csv
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-ALEXIS.csv
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-ALEXIS.csv
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-KEVIN.csv
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-KEVIN.csv
+PR-interviewer-rodeo/PR-interviewer-rodeo-data
+PR-interviewer-rodeo/PR-interviewer-rodeo-data/trust.rhps.cntrls.vars.data.rds
+
+PR-interviewer-wrangling/PR-interviewer-wrangling-data
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/PR-interviewer-vars.csv
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-JACOB.csv
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-JACOB.csv
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-ALEXIS.csv
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-ALEXIS.csv
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-KEVIN.csv
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-KEVIN.csv
 
 # coding instructions for response variable coding
-PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/S4Q12-coding-instructions.docx
+PR-interviewer-wrangling/PR-interviewer-wrangling-data/S4Q12-coding-instructions.docx
 
 # misc stuff
 .DS_Store
