@@ -27,7 +27,12 @@ The workflow map provides a visualization of the workflow:
 
 ```mermaid
 graph LR
-    A[Box A] --> B[Box B]
-    A[Box A] --> C[Box C]
+    A[PR-interviewer-vars-prep.R] --> B[trust.rhps.cntrls.vars.data.rds]
+    
+    B[trust.rhps.cntrls.vars.data.rds] --> C[PR-interviewer-balance-var-comparison-analysis.R]
+    B[trust.rhps.cntrls.vars.data.rds] --> D[PR-interviewer-demographics-analysis.R]
+    B[trust.rhps.cntrls.vars.data.rds] --> E[PR-interviewer-S1Q-chisquare-analysis.R]
+    
+    C[PR-interviewer-balance-var-comparison-analysis.R] --> F[Figure 1 and Figure 2]
 
 
