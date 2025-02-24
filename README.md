@@ -25,9 +25,9 @@ Each folder contains a README file that describes the contents of the folder in 
 
 The workflow map provides a visualization of the workflow:
 
-```{mermaid}
+```mermaid
 graph LR
     A[Box A] --> B[Box B]
     A[Box A] --> C[Box C]
 
-```
+
