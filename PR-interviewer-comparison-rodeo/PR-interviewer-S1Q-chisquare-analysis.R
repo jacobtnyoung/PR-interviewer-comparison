@@ -206,6 +206,13 @@ plot(
 points( datThemes$ASU.Yes.p[order(datThemes$diff)], y.ax, col = cols[1], pch = pchs[1:53] )
 points( datThemes$INI.Yes.p[order(datThemes$diff)], y.ax, col = cols[2], pch = pchs[54:106] )
 
+# add the segments
+segments( datThemes$ASU.Yes.p[order(datThemes$diff)],y.ax,
+          datThemes$INI.Yes.p[order(datThemes$diff)],y.ax,
+          col = "grey30",
+          lwd = 1.2
+          )
+
 axis( side = 2, at = y.ax, las = 1, labels = datThemes$custom_labels[order(datThemes$diff)], cex.axis = 0.8 )
 # title( "Figure 3: Proportions for Themes and Differences" )
 
