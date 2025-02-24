@@ -22,7 +22,7 @@ library( here )  # to call local directory
 
 # ----
 # load the functions needed that is in the utilities folder
-source( here( "PR-interviewer-comparison-utils/PR-interviewer-functions.R" ) )
+source( here( "PR-interviewer-utils/PR-interviewer-functions.R" ) )
 
 
 # ----

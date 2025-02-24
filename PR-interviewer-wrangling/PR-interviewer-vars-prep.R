@@ -21,7 +21,7 @@ library( psych )    # for reliability analysis
 # Load the data ----
 
 dat <- read.csv(
-  here( "PR-interviewer-comparison-wrangling/PR-interviewer-comparison-vars.csv" ),
+  here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/PR-interviewer-vars.csv" ),
   as.is = TRUE,
   header = TRUE,
   stringsAsFactors = FALSE
@@ -128,5 +128,4 @@ colnames( comparison.dat ) <- names.comparison.dat
 # ================================================================== #
 # save the file for calling in the analysis ----
 
-saveRDS( comparison.dat, paste( here(), "/PR-interviewer-comparison-rodeo/trust.rhps.cntrls.vars.data", ".rds", sep = "" ) )  
-
+saveRDS( comparison.dat, paste( here(), "/PR-interviewer-rodeo/PR-interviewer-rodeo-data/trust.rhps.cntrls.vars.data", ".rds", sep = "" ) )  

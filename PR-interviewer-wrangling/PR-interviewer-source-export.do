@@ -28,4 +28,4 @@ label drop _all
 
 
 * Write an outfile.
-outsheet using PR-interviewer-comparison-vars.csv , comma replace
+outsheet using "/Users/jyoung20/Github/PR-interviewer-comparison/PR-interviewer-wrangling/PR-interviewer-wrangling-data/PR-interviewer-vars.csv" , comma replace

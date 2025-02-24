@@ -9,7 +9,7 @@
 
 
 # ================================================================== #
-# Step 1
+# Setup 
 
 # ----
 # Clear workspace
@@ -17,67 +17,72 @@ rm( list = ls() )
 
 # ----
 # load the needed libraries
-library( here ) # used for referencing local directory
+library( here )  # used for referencing local directory
 library( haven ) # used for reading stata files
 library( dplyr ) # for filtering data
-library( irr ) # for the reliability analysis
+
+
+# ================================================================== #
+# Step 1
+
+# This is commented out because it is not used after it has
+# already been executed
+# These files were just to create the files referenced
+# in step 2 below.
 
 # ----
 # Load the data
-dat <- as.data.frame( 
-  read_dta( 
-    here( "../../PV PAR Interviews Full_CLEANED.dta" )
-    )
-  )
+## dat <- read.csv(
+##   here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/PR-interviewer-vars.csv" ),
+##   as.is = TRUE,
+## header = TRUE,
+## stringsAsFactors = FALSE
+## )
+
 
 # ----
 # Restructure the files and write them to a .csv file.
 
-
-
 # take those cases with an ASU interviewer
-dat.asu <- dat %>% 
-  select( id, InterviewerType, S4Q12, S4Q12a ) %>% 
-  filter( InterviewerType == 0 ) %>% 
-  select( id, S4Q12, S4Q12a )
+## dat.asu <- dat %>% 
+##   select( id, InterviewerType, S4Q12, S4Q12a ) %>% 
+## filter( InterviewerType == 0 ) %>% 
+## select( id, S4Q12, S4Q12a )
 
 # take those cases with a Cruz interviewer
-dat.cruz <- dat %>% 
-  select( id, InterviewerType, S4Q12, S4Q12a ) %>% 
-  filter( InterviewerType == 1 ) %>% 
-  select( id, S4Q12, S4Q12a )
+## dat.cruz <- dat %>% 
+## select( id, InterviewerType, S4Q12, S4Q12a ) %>% 
+##   filter( InterviewerType == 1 ) %>% 
+## select( id, S4Q12, S4Q12a )
 
 # add a column for coding
-dat.asu$diff  <- rep( 99, dim( dat.asu )[1] )
-dat.cruz$diff <- rep( 99, dim( dat.cruz )[1] )
+## dat.asu$diff  <- rep( 99, dim( dat.asu )[1] )
+## dat.cruz$diff <- rep( 99, dim( dat.cruz )[1] )
 
 # add a column for the additional variable
-dat.asu$reas  <- rep( 99, dim( dat.asu )[1] )
-dat.cruz$reas <- rep( 99, dim( dat.cruz )[1] )
-
+## dat.asu$reas  <- rep( 99, dim( dat.asu )[1] )
+## dat.cruz$reas <- rep( 99, dim( dat.cruz )[1] )
 
 # write the files out
-write.csv( dat.asu,  "PAR-Interviewer-Comparison-TEMP/interviewer-asu-to-code.csv" )
-write.csv( dat.cruz, "PAR-Interviewer-Comparison-TEMP/interviewer-cruz-to-code.csv" )
+## write.csv( dat.asu,  "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code.csv" )
+## write.csv( dat.cruz, "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code.csv" )
 
 
 # ================================================================== #
 # Step 2
 
-rm( list = ls() )
-
 # ----
 # Read in the files
 
 # ASU interviewer files
-dat.asu.A <- read.csv( here( "PAR-Interviewer-Comparison-TEMP/interviewer-asu-to-code-ALEXIS.csv" ) )
-dat.asu.K <- read.csv( here( "PAR-Interviewer-Comparison-TEMP/interviewer-asu-to-code-KEVIN.csv" ) )
-dat.asu.J <- read.csv( here( "PAR-Interviewer-Comparison-TEMP/interviewer-asu-to-code-JACOB.csv" ) )
+dat.asu.A <- read.csv( here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-ALEXIS.csv" ) )
+dat.asu.K <- read.csv( here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-KEVIN.csv" ) )
+dat.asu.J <- read.csv( here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-asu-to-code-JACOB.csv" ) )
 
 # Cruz interviewer files
-dat.cruz.A <- read.csv( here( "PAR-Interviewer-Comparison-TEMP/interviewer-cruz-to-code-ALEXIS.csv" ) )
-dat.cruz.K <- read.csv( here( "PAR-Interviewer-Comparison-TEMP/interviewer-cruz-to-code-KEVIN.csv" ) )
-dat.cruz.J <- read.csv( here( "PAR-Interviewer-Comparison-TEMP/interviewer-cruz-to-code-JACOB.csv" ) )
+dat.cruz.A <- read.csv( here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-ALEXIS.csv" ) )
+dat.cruz.K <- read.csv( here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-KEVIN.csv" ) )
+dat.cruz.J <- read.csv( here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/interviewer-cruz-to-code-JACOB.csv" ) )
 
 # Build the file for analysis
 dat.asu.r <- data.frame(
@@ -107,36 +112,13 @@ dat.for.r.reas.cruz <- dat.cruz.r %>% select( reas.A, reas.K, reas.J )
 
 
 # ----
-# perform reliability analysis
-
-agree.diff <- agree( dat.for.r.diff )
-agree.reas <- agree( dat.for.r.reas )
-
-rel.diff <- kappam.light( dat.for.r.diff )
-rel.reas <- kappam.light( dat.for.r.reas )
-
-
-agree.diff.asu <- agree( dat.for.r.diff.asu )
-agree.reas.asu <- agree( dat.for.r.reas.asu )
-rel.diff.asu <- kappam.light( dat.for.r.diff.asu )
-rel.reas.asu <- kappam.light( dat.for.r.reas.asu )
-
-
-agree.diff.cruz <- agree( dat.for.r.diff.cruz )
-agree.reas.cruz <- agree( dat.for.r.reas.cruz )
-rel.diff.cruz <- kappam.light( dat.for.r.diff.cruz )
-rel.reas.cruz <- kappam.light( dat.for.r.reas.cruz )
-
-
-
-# ----
 # compare differences for comfort level
 
 dat <- as.data.frame( 
   read_dta( 
-    here( "../../PV PAR Interviews Full_CLEANED.dta" )
+    here( "PR-interviewer-wrangling/PR-interviewer-wrangling-data/PV PAR Interviews Full_CLEANED.dta" ),
+    )
   )
-)
 
 dat.type <- dat %>% select( id, InterviewerType, Randomize )
 
@@ -168,22 +150,3 @@ dat.for.comp.ALL <- dat.for.comp %>%
   select( InterviewerType, match, diff.A, Randomize ) %>%
   filter( match == TRUE & Randomize == 1 ) %>% 
   mutate( matters = na_if( diff.A, 99 ) )
-
-chisq.test( dat.for.comp.ALL$InterviewerType, dat.for.comp.ALL$matters )
-chisq.test( dat.for.comp.A$InterviewerType, dat.for.comp.A$matters.A )
-chisq.test( dat.for.comp.K$InterviewerType, dat.for.comp.K$matters.K )
-chisq.test( dat.for.comp.J$InterviewerType, dat.for.comp.J$matters.J )
-
-t.test( matters ~ InterviewerType, data = dat.for.comp.ALL )
-t.test( matters.A ~ InterviewerType, data = dat.for.comp.A )
-t.test( matters.K ~ InterviewerType, data = dat.for.comp.K )
-t.test( matters.J ~ InterviewerType, data = dat.for.comp.J )
-
-
-
-
-
-
-
-
-

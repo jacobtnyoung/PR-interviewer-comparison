@@ -27,7 +27,7 @@ library( stargazer ) # for creating the table
 
 # ----
 # load the data
-dat <- readRDS( file = here( "PR-interviewer-comparison-rodeo/trust.rhps.cntrls.vars.data.rds" ) )
+dat <- readRDS( file = here( "PR-interviewer-rodeo/PR-interviewer-rodeo-data/trust.rhps.cntrls.vars.data.rds" ) )
 
 # coerce to a data frame
 dat <- as.data.frame( dat )
@@ -35,7 +35,7 @@ dat <- as.data.frame( dat )
 
 # ----
 # load the functions needed that is in the utilities folder
-source( here( "PR-interviewer-comparison-utils/PR-interviewer-functions.R" ) )
+source( here( "PR-interviewer-utils/PR-interviewer-functions.R" ) )
 
 
 # ----
