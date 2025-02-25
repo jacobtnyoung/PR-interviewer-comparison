@@ -4,6 +4,9 @@ PR-interviewer-comparison-wrangling/PV PAR Interviews Full_CLEANED.dta
 # the code to extract items from the source data file
 PR-interviewer-comparison-wrangling/trust-culture-source-export.do
 
+# the misc docs folder
+misc-docs
+
 # data files
 .Rproj.user
 

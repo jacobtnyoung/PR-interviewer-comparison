@@ -18,7 +18,7 @@ rm( list = ls() )
 # load the libraries
 library( dplyr ) # for working with the data
 library( here )  # to call local directory
-
+library( pwr )   # for power analysis
 
 # ----
 # load the functions needed that is in the utilities folder
@@ -223,4 +223,15 @@ legend( "bottomright" ,
         legend = legend_labels, 
         title = "Legend", cex = 0.7
 )
+
+
+# ----
+# perform power analysis for items
+
+# amount of power for a moderate effect size
+pwr.chisq.test( w = 0.4, df = 1, N = 158, sig.level = 0.05/53 )
+
+
+# with 158 cases, we have power = 0.8 at w = 0.33
+pwr.chisq.test( w = 0.33, df = 1, sig.level = 0.05/53, power = 0.8 )
 
