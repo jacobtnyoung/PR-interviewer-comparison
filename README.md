@@ -33,7 +33,7 @@ graph LR
     B[trust.rhps.cntrls.vars.data.rds] --> D[PR-interviewer-demographics-analysis.R]
     B[trust.rhps.cntrls.vars.data.rds] --> E[PR-interviewer-S1Q-chisquare-analysis.R]
     
-    C[PR-interviewer-balance-var-comparison-analysis.R] --> F[Figure 1 and Figure 2]
+    C[PR-interviewer-balance-var-comparison-analysis.R] --> F[Figure 1 and Figure 2];
     
 graph TD
     1[raw data files] --> A[PR-interviewer-vars-prep.R]
