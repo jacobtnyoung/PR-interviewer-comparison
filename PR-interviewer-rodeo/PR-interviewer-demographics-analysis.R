@@ -2,7 +2,7 @@
 # PAPER TITLE
 # ================================================================== #
 
-# This file works with the demograph data for tables
+# This file works with the demographic data for tables
 # and creates appendices for comparison with randomized
 # and non-randomized participants.
 
@@ -42,8 +42,8 @@ source( here( "PR-interviewer-utils/PR-interviewer-functions.R" ) )
 # create a table of demographics
 
 # variables to use for the table
-select_vars_to_use <- dat %>% 
-  select( -c( id ) )
+select_vars_to_use <- dat |> 
+  select( -c( id ) ) 
 
 # create the descriptive stats objects
 
