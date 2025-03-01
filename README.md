@@ -36,3 +36,20 @@ graph LR
     C[PR-interviewer-balance-var-comparison-analysis.R] --> F[Figure 1 and Figure 2]
 
 
+
+```mermaid
+graph TD;
+    %% Define node types
+    classDef data fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef script fill:#ccf,stroke:#333,stroke-width:2px;
+    classDef output fill:#cfc,stroke:#333,stroke-width:2px;
+
+    %% Nodes
+    C["Data File C"]:::data
+    A["Script A"]:::script
+    F1["Figure 1"]:::output
+
+    %% Edges
+    C -->|Input| A
+    A -->|Generates| F1
+
