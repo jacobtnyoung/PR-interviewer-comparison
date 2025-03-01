@@ -381,25 +381,25 @@ folder in more detail.</p>
 <div id="workflow-map" class="section level2">
 <h2>Workflow Map</h2>
 <p>The workflow map provides a visualization of the workflow:</p>
-<p>```mermaid graph LR A[PR-interviewer-vars-prep.R] –&gt;
-B[trust.rhps.cntrls.vars.data.rds]</p>
-<pre><code>B[trust.rhps.cntrls.vars.data.rds] --&gt; C[PR-interviewer-balance-var-comparison-analysis.R]
-B[trust.rhps.cntrls.vars.data.rds] --&gt; D[PR-interviewer-demographics-analysis.R]
-B[trust.rhps.cntrls.vars.data.rds] --&gt; E[PR-interviewer-S1Q-chisquare-analysis.R]
-
-C[PR-interviewer-balance-var-comparison-analysis.R] --&gt; F[Figure 1 and Figure 2]</code></pre>
-<p>```mermaid graph TD; %% Define node types classDef data
-fill:#f9f,stroke:#333,stroke-width:2px; classDef script
-fill:#ccf,stroke:#333,stroke-width:2px; classDef output
-fill:#cfc,stroke:#333,stroke-width:2px;</p>
-<pre><code>%% Nodes
-C[&quot;Data File C&quot;]:::data
-A[&quot;Script A&quot;]:::script
-F1[&quot;Figure 1&quot;]:::output
-
-%% Edges
-C --&gt;|Input| A
-A --&gt;|Generates| F1</code></pre>
+<pre class="mermaid"><code>graph LR
+    A[PR-interviewer-vars-prep.R] --&gt; B[trust.rhps.cntrls.vars.data.rds]
+    
+    B[trust.rhps.cntrls.vars.data.rds] --&gt; C[PR-interviewer-balance-var-comparison-analysis.R]
+    B[trust.rhps.cntrls.vars.data.rds] --&gt; D[PR-interviewer-demographics-analysis.R]
+    B[trust.rhps.cntrls.vars.data.rds] --&gt; E[PR-interviewer-S1Q-chisquare-analysis.R]
+    
+    C[PR-interviewer-balance-var-comparison-analysis.R] --&gt; F[Figure 1 and Figure 2]</code></pre>
+<pre class="mermaid"><code>flowchart TB
+    c1--&gt;a2
+    subgraph one
+    a1--&gt;a2
+    end
+    subgraph two
+    b1--&gt;b2
+    end
+    subgraph three
+    c1--&gt;c2
+    end</code></pre>
 </div>
 </div>
 
