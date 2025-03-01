@@ -41,15 +41,14 @@ graph TD
 ```
 
 ```mermaid
-flowchart TB
-    c1-->a2
-    subgraph one
-    a1-->a2
-    end
-    subgraph two
-    b1-->b2
-    end
-    subgraph three
-    c1-->c2
-    end
-```
+graph LR
+    %% Data processing workflow
+    1[Raw Data Files] -->|Processed by| A[PR-interviewer-vars-prep.R]
+    A -->|Generates| B[trust.rhps.cntrls.vars.data.rds]
+    
+    B -->|Used by| C[PR-interviewer-balance-var-comparison-analysis.R]
+    B -->|Used by| D[PR-interviewer-demographics-analysis.R]
+    B -->|Used by| E[PR-interviewer-S1Q-chisquare-analysis.R]
+    
+    C -->|Outputs| F[Figure 1 and Figure 2]
+```    
