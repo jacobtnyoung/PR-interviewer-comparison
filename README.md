@@ -27,28 +27,19 @@ The workflow map provides a visualization of the workflow:
 
 ```mermaid
 graph LR
-    A[PR-interviewer-vars-prep.R] --> B[trust.rhps.cntrls.vars.data.rds]
-    
-    B[trust.rhps.cntrls.vars.data.rds] --> C[PR-interviewer-balance-var-comparison-analysis.R]
-    B[trust.rhps.cntrls.vars.data.rds] --> D[PR-interviewer-demographics-analysis.R]
-    B[trust.rhps.cntrls.vars.data.rds] --> E[PR-interviewer-S1Q-chisquare-analysis.R]
-    
-    C[PR-interviewer-balance-var-comparison-analysis.R] --> F[Figure 1 and Figure 2]
-    
-graph TD
-    1[raw data files] --> A[PR-interviewer-vars-prep.R]
-
-```
-
-```mermaid
-graph LR
     %% Data processing workflow
     1[Raw Data Files] -->|Processed by| A[PR-interviewer-vars-prep.R]
     A -->|Generates| B[trust.rhps.cntrls.vars.data.rds]
-    
+  
     B -->|Used by| C[PR-interviewer-balance-var-comparison-analysis.R]
     B -->|Used by| D[PR-interviewer-demographics-analysis.R]
     B -->|Used by| E[PR-interviewer-S1Q-chisquare-analysis.R]
     
     C -->|Outputs| F[Figure 1 and Figure 2]
+    
+    F[PR-interviewer-functions.R] -->|Used by| C[PR-interviewer-balance-var-comparison-analysis.R]
+    F -->|Used by| D[PR-interviewer-demographics-analysis.R]
+    F -->|Used by| E[PR-interviewer-S1Q-chisquare-analysis.R]
+    
+    
 ```    
