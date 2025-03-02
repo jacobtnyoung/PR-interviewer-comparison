@@ -13,11 +13,13 @@ ABSTRACT.
 
 ### Folders
 
-There are two folders:
+There are three folders:
 
-  * The rodeo folder-this folder contains the cleaned data and the files to render the analyses.
+  * The *rodeo* folder-this folder contains the cleaned data and the files to render the analyses.
   
-  * The wrangling folder-this contains the raw data and the scripts to prepare the data for analysis (that is, the rodeo folder).
+  * The *wrangling* folder-this contains the raw data and the scripts to prepare the data for analysis (that is, the rodeo folder).
+  
+  * The *utils* folder-contains scripts for generating functions and other utilities.
 
 Each folder contains a README file that describes the contents of the folder in more detail.
   
@@ -44,8 +46,8 @@ graph LR
     B -->|Used by| G[PR-interviewer-S4Q12-analysis.R]
 
     %% Output generation
-    C -->|Outputs| H[Figure 1 and Figure 2]
-    D -->|Outputs| I[Table 1]
+    C -->|Outputs| H[Figure 1 & Figure 2]
+    D -->|Outputs| I[Table 1 & Appendix 1]
     E -->|Used by| J[Figure 3]
 
 ```    
