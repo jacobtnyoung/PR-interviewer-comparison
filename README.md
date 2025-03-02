@@ -35,13 +35,15 @@ graph LR
     F[PR-interviewer-functions.R] -->|Used by| C[PR-interviewer-balance-var-comparison-analysis.R]
     F -->|Used by| D[PR-interviewer-demographics-analysis.R]
     F -->|Used by| E[PR-interviewer-S1Q-chisquare-analysis.R]
+    F -->|Used by| G[PR-interviewer-S4Q12-analysis.R]
 
     %% Analysis scripts using processed data
     B -->|Used by| C[PR-interviewer-balance-var-comparison-analysis.R]
     B -->|Used by| D[PR-interviewer-demographics-analysis.R]
     B -->|Used by| E[PR-interviewer-S1Q-chisquare-analysis.R]
+    B -->|Used by| G[PR-interviewer-S4Q12-analysis.R]
 
     %% Output generation
-    C -->|Outputs| G[Figure 1 and Figure 2]
+    C -->|Outputs| H[Figure 1 and Figure 2]
 
 ```    
