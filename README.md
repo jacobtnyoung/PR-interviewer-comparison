@@ -45,7 +45,7 @@ graph LR
 
     %% Output generation
     C -->|Outputs| H[Figure 1 and Figure 2]
-    D -->|Outputs| H[Table 1]
-    E -->|Used by| E[Figure 3]
+    D -->|Outputs| I[Table 1]
+    E -->|Used by| J[Figure 3]
 
 ```    
