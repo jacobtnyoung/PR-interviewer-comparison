@@ -1,5 +1,6 @@
 # ================================================================== #
-# PAPER TITLE
+# Who’s Asking? Participatory Research, Interviewer Effects, 
+# and the Production of Knowledge in a Women’s Prison
 # ================================================================== #
 
 # This file conducts the chi-square tests.

@@ -1,5 +1,6 @@
 # ================================================================== #
-# TITLE
+# Who’s Asking? Participatory Research, Interviewer Effects, 
+# and the Production of Knowledge in a Women’s Prison
 # ================================================================== #
 
 # This file recodes the S4Q12 variable.
@@ -45,7 +46,7 @@ dat <- as.data.frame(
 dat_ASU_interviewer <- dat |> 
   filter( Randomize  == 1 ) |>       # take those who were randomized
   filter( InterviewerType == 0 ) |>  # take those with the ASU interviewer  
-  select( id, S4Q12 )
+  select( id, S4Q12, S4Q12a )
 
 
 # code the values
@@ -82,7 +83,7 @@ pref_ASU_interviewer <- case_when(
 dat_CRUZ_interviewer <- dat |> 
   filter( Randomize  == 1 ) |>      # take those who are randomized
   filter( InterviewerType == 1 ) |> # take those who had the CRUZ interviewer
-  select( id, S4Q12 )
+  select( id, S4Q12, S4Q12a )
 
 # code the values
 pref_CRUZ_interviewer <- case_when(
@@ -147,12 +148,12 @@ dat_ASU_interviewer$pref <- pref_ASU_interviewer
 dat_CRUZ_interviewer$pref <- pref_CRUZ_interviewer
 
 # drop the S4Q12 var
-dat_ASU_interviewer <- dat_ASU_interviewer |> select( id, pref)
-dat_CRUZ_interviewer <- dat_CRUZ_interviewer |> select( id, pref)
+dat_ASU_interviewer_analysis <- dat_ASU_interviewer |> select( id, pref)
+dat_CRUZ_interviewer_analysis <- dat_CRUZ_interviewer |> select( id, pref)
 
 dat_analysis <- full_join( 
   dat_analysis, 
-  rbind( dat_ASU_interviewer, dat_CRUZ_interviewer ),
+  rbind( dat_ASU_interviewer_analysis, dat_CRUZ_interviewer_analysis ),
   by = "id"
 )
 
@@ -166,3 +167,13 @@ chisq.test( table_to_test ) # this gives a warning b/c of the last row
 
 # conduct the test without the last row
 chisq.test( table_to_test[-3,] ) 
+
+
+# ----
+# Content analysis of open-ended responses
+
+dat_ASU_interviewer$S4Q12a[dat_ASU_interviewer$pref == -1 ]
+dat_CRUZ_interviewer$S4Q12a[dat_CRUZ_interviewer$pref == -1 ]
+
+dat_ASU_interviewer$S4Q12a[dat_ASU_interviewer$pref == 1 ]
+dat_CRUZ_interviewer$S4Q12a[dat_CRUZ_interviewer$pref == 1 ]

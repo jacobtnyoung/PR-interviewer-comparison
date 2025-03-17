@@ -1,6 +1,7 @@
-# ################################################################## #
-# PAPER TITLE NEEDED!!!!
-# ################################################################## #
+# ================================================================== #
+# Who’s Asking? Participatory Research, Interviewer Effects, 
+# and the Production of Knowledge in a Women’s Prison
+# ================================================================== #
 
 # This file prepares trust, relational health, psychological safety,
 # and demographic variables for analysis

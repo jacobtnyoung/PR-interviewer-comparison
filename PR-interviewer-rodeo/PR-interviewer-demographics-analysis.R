@@ -1,5 +1,6 @@
 # ================================================================== #
-# PAPER TITLE
+# Who’s Asking? Participatory Research, Interviewer Effects, 
+# and the Production of Knowledge in a Women’s Prison
 # ================================================================== #
 
 # This file works with the demographic data for tables
@@ -65,7 +66,7 @@ nonrandomized_desc <- cbind(
 # ----
 # build the table
 
-# NOTE: stuck with getting this to work
+# this requires some cleanup after rendering
 
 stargazer(
   cbind( all_desc, randomized_desc, nonrandomized_desc ),

@@ -1,5 +1,6 @@
 # ================================================================== #
-# Perryville PAR Interviewer Comparison.
+# Who’s Asking? Participatory Research, Interviewer Effects, 
+# and the Production of Knowledge in a Women’s Prison
 # ================================================================== #
 
 # This file prepares and analyzes the S4Q12a variable.
